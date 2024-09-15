@@ -1,14 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct(){
+typedef struct{
 	float preco;
 	char descricao[100];
 	int cod;
 }Servicos;
 
+void cadastrarServico(Servicos *servico);
+
 void main(){
-    FILE *pont_servicos;
+	Servicos servico[100];
+	cadastrarServico(servico);
+	printf("%s",servico[0].descricao);
 }//fim main
 
 void cadastrarServico(Servicos *servico){
@@ -20,4 +24,5 @@ void cadastrarServico(Servicos *servico){
 	gets(descricao);
 	printf("Informe o preco do servico: ");
 	scanf("%f", &preco);
-}
+	strcpy(servico[0].descricao, descricao);
+}//cadastrarServico
