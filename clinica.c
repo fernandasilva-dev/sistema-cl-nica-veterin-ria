@@ -124,7 +124,7 @@ void mostrarPacientes(FILE *arqPaciente, Paciente *paciente, int *qtd){
 	if(*qtd == 0){
 		printf("Nenhum paciente cadastrado!\n");
 	}else{
-		printf("------------- LISTA DE PACIENTES ----------------\n\n");
+		printf("------------- LISTAgem DE PACIENTES CADASTRADOS ----------------\n\n");
 		int i;
 		for(i=0;i<*qtd;i++){
 			fscanf(arqPaciente, "%d\n", &paciente->id);
@@ -137,7 +137,7 @@ void mostrarPacientes(FILE *arqPaciente, Paciente *paciente, int *qtd){
 			printf("Id: %d\n",paciente->id);
 			printf("Nome do paciente: %s", paciente->nomePaciente);
 			printf("Raca do paciente: %s", paciente->racaPaciente);
-			printf("Idado do paciente: %d\n", paciente->idadePaciente);
+			printf("Idade do paciente: %d\n", paciente->idadePaciente);
 			printf("Nome do dono: %s", paciente->nomeDono);
 		}
 		printf("\n-------------------------\n");
