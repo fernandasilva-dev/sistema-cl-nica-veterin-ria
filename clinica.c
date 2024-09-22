@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-// \n
+// \n  ||
 
 int qtd = 0;
 
@@ -14,7 +14,6 @@ typedef struct{
 }Paciente;
 
 void cadastrarPaciente(FILE *arqPaciente, Paciente *paciente){
-	printf("---------- CADASTRO DE PACIENTE ----------\n\n");
 	
 	if(qtd == 0){
 		paciente->id = 1;
@@ -22,17 +21,66 @@ void cadastrarPaciente(FILE *arqPaciente, Paciente *paciente){
 	
 	paciente->id = qtd + 1;
 	
-	printf("Informe o nome do dono do paciente: ");
-	gets(paciente->nomeDono);
+	int op = 1;
+	do
+	{
+		printf("---------- CADASTRO DE PACIENTE ----------\n\n");
+		printf("Informe o nome do dono do paciente: ");
+		gets(paciente->nomeDono);
+		int i;
+		for(i=0;i<strlen(paciente->nomeDono);i++){
+			if(paciente->nomeDono[i] != NULL){
+				op = 0;
+			}
+		}
+		system("cls");
+	} while(op == 1);
 	
-	printf("Informe o nome do paciente: ");
-	gets(paciente->nomePaciente);
+	op = 1;
+	do
+	{
+		printf("---------- CADASTRO DE PACIENTE ----------\n\n");
+		printf("Informe o nome do paciente: ");
+		gets(paciente->nomePaciente);
+		int i;
+		for(i=0;i<strlen(paciente->nomePaciente);i++){
+			if(paciente->nomePaciente[i] != NULL){
+				op = 0;
+			}
+		}
+		system("cls");
+	} while(op == 1);
 	
-	printf("Informe a raca do paciente: ");
-	gets(paciente->racaPaciente);
+	op = 1;
+	do
+	{
+		printf("---------- CADASTRO DE PACIENTE ----------\n\n");
+		printf("Informe a raca do paciente: ");
+		gets(paciente->racaPaciente);
+		int i;
+		for(i=0;i<strlen(paciente->racaPaciente);i++){
+			if(paciente->racaPaciente[i] != NULL){
+				op = 0;
+			}
+		}
+		system("cls");
+	} while(op == 1);
 	
-	printf("Informe a idade do paciente: ");
-	scanf("%d", &paciente->idadePaciente);
+	op = 1;
+	do
+	{
+		printf("---------- CADASTRO DE PACIENTE ----------\n\n");
+		printf("Informe a idade do paciente: ");
+		scanf("%d", &paciente->idadePaciente);
+		if(paciente->idadePaciente < 0){
+			printf("Idade invalida!");
+		}
+		if(paciente->idadePaciente > 0){
+			op = 0;
+		}
+		system("cls");
+		
+	} while(op == 1);
 	
 	qtd++;
 	
@@ -65,6 +113,9 @@ void salvarPaciente(FILE *arqPaciente, Paciente *paciente){
 	fputc('\n', arqPaciente);
 	
 	fclose(arqPaciente);
+	
+	printf("Cliente cadastrado com sucesso!\n\n");
+	system("pause");
 }
 
 void main(){
