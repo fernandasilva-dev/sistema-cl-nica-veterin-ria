@@ -124,7 +124,7 @@ void mostrarPacientes(FILE *arqPaciente, Paciente *paciente, int *qtd){
 	if(*qtd == 0){
 		printf("Nenhum paciente cadastrado!\n");
 	}else{
-		printf("------------- LISTAgem DE PACIENTES CADASTRADOS ----------------\n\n");
+		printf("------------- LISTAGEM DE PACIENTES CADASTRADOS ----------------\n\n");
 		int i;
 		for(i=0;i<*qtd;i++){
 			fscanf(arqPaciente, "%d\n", &paciente->id);
@@ -146,6 +146,35 @@ void mostrarPacientes(FILE *arqPaciente, Paciente *paciente, int *qtd){
 	fclose(arqPaciente);
 }
 
+void consultarId(FILE *arqPaciente, Paciente *paciente, int *qtd){
+	arqPaciente = fopen("pacientes.txt", "r");
+	if(arqPaciente == NULL){
+		printf("Erro ao abrir o arquivo!\n");
+	}
+	int id;
+	printf("Informe o id do paciente: ");
+	scanf("%d", &id);
+	int i;
+	for(i=0;i<*qtd;i++){
+			fscanf(arqPaciente, "%d\n", &paciente->id);
+			fgets(paciente->nomePaciente, 50, arqPaciente);
+			fgets(paciente->racaPaciente, 50, arqPaciente);
+			fscanf(arqPaciente, "%d\n", &paciente->idadePaciente);
+			fgets(paciente->nomeDono, 50, arqPaciente);
+			
+			if(paciente->id == id){
+				printf("\n------------ID-------------\n\n");
+				printf("Id: %d\n",paciente->id);
+				printf("Nome do paciente: %s", paciente->nomePaciente);
+				printf("Raca do paciente: %s", paciente->racaPaciente);
+				printf("Idade do paciente: %d\n", paciente->idadePaciente);
+				printf("Nome do dono: %s", paciente->nomeDono);
+				system("pause");
+			}
+		}
+		fclose(arqPaciente);
+}// fim consultar
+
 void main(){
 	
 	FILE *arqPaciente;
@@ -158,7 +187,7 @@ void main(){
 		system("cls");
 		fflush(stdin);
 		printf("---------- CLINICA VETERINARIA DOM DOG ----------\n\n");
-		printf("1 - Cadastrar paciente\n2 - Alterar paciente\n3 - Listar paciente\n4 - Excluir paciente\n0 - Sair\n");
+		printf("1 - Cadastrar paciente\n2 - Alterar paciente\n3 - Listar paciente\n4 - Excluir paciente\n5 - Consultar\n0 - Sair\n");
 		printf(">> ");
 		scanf("%d", &opMenu);
 		
@@ -169,12 +198,17 @@ void main(){
 			fflush(stdin);
 			cadastrarPaciente(arqPaciente, &paciente, &qtd);
 			salvarPaciente(arqPaciente, &paciente);
+			printf("qtd: %d\n", qtd);
 			system("pause");
 			break;
 		case 3:
 			system("cls");
 			fflush(stdin);
 			mostrarPacientes(arqPaciente, &paciente, &qtd);
+			system("pause");
+			break;
+		case 5:
+			consultarId(arqPaciente, &paciente, &qtd);
 			system("pause");
 			break;
 		case 0:
